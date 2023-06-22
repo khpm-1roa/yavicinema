@@ -6,7 +6,9 @@ import {NzMessageService} from 'ng-zorro-antd';
   selector: 'app-cinemas',
   templateUrl: './cinemas.component.html',
   styleUrls: ['./cinemas.component.css']
+  
 })
+
 export class CinemasComponent implements OnInit {
 
   citiesOptions: Array<{ id: number; city: string; cinemas: string }> = [];
@@ -30,6 +32,7 @@ export class CinemasComponent implements OnInit {
   editCinemaMode: boolean;
   editRoomMode: boolean;
   isEditRoomModalVisible: boolean;
+  showResult: boolean;
 
   constructor(public cinemaService: CinemaService, private message: NzMessageService) {
   }
@@ -128,11 +131,13 @@ export class CinemasComponent implements OnInit {
     this.cinemaService.orderTickets({
       nomClient: this.fullName,
       codePayment: this.paymentNumber,
-      tickets: this.ticketCart
+      tickets: this.ticketCart,
+      
     })
       .subscribe((result: any[]) => {
-          this.message.success('Ordered successfully !');
+          this.message.success('RESERVA CREADA CON EXITO  !');
           this.getTickets();
+          this.showResult = true;
         }, this.errorFunc
       );
   }
@@ -264,4 +269,7 @@ export class CinemasComponent implements OnInit {
   getSelectedRoom() {
     return this.isEditRoomModalVisible ? this.selectdSalle : null;
   }
+
+
+  
 }

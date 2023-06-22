@@ -145,17 +145,18 @@
                   <nz-row *ngIf="ticketCart.length">
                     <nz-col nzFlex="1" style="margin: 20px 10px;">
                       <label for="fullName">NOMBRE </label>
-                      <input nz-input style="margin: 10px 5px" placeholder="Full Name" id='fullName'
-                             [(ngModel)]="fullName"/>
+                      <input nz-input style="margin: 10px 5px" placeholder="Full Name" id='fullName' [(ngModel)]="fullName"/>
                       <label for="paymentNumber">Número de pago</label>
-                      <input nz-input style="margin: 10px 5px" placeholder="Payment Number" id='paymentNumber'
-                             [(ngModel)]="paymentNumber"/>
-                      <button nz-button nzType="default"
-                              (click)="orderTickets()">Ordene ahora
-                      </button>
+                      <input nz-input style="margin: 10px 5px" placeholder="Payment Number" id='paymentNumber' [(ngModel)]="paymentNumber"/>
+                      <button nz-button nzType="default" (click)="orderTickets()">Ordene ahora</button>
                     </nz-col>
                   </nz-row>
-
+                  <br>
+                  <div *ngIf="showResult">
+                    <h3>SU RESERVA FUE CREADA POR EXITO CON LOS DATOS :</h3>
+                    <p>Nombre: {{ fullName }}</p>
+                    <p>Número de pago: {{ paymentNumber }}</p>
+                  </div>
                 </nz-spin>
               </nz-col>
 
@@ -165,7 +166,7 @@
                                 *ngFor="let projection of salle?.projections"
                                 (click)="onSelectProjection(projection,salle)">
                     {{projection.seance.heureDebut|slice:0:5}}<span></span>
-                    {{projection.prix}}DH
+                    {{projection.prix}}$
                   </nz-list-item>
                 </nz-list>
               </nz-col>
